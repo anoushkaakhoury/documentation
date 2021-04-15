@@ -1,0 +1,18 @@
+Introduction : Wordpress is considered to be the most popular CMS (content management system) on the internet which allows us to set up blogs and websites with 
+               the ease of a few clicks.As it has an engaing UI, modifying it to our convenience is easier thus making it a robust application. 
+                
+               The objective behind this guide will be to set up a Highly Available, Scalable and Failure Resistent Wordpress Application Architecture that involves 
+               Virtual Private Cloud(VPC), Application Load Balancer (ALB) , DNS Name, Auto Scaling Group ( ASG), Relational Database Service (RDS),EC2 instances 
+               and a CI/CD Pipeline.
+               
+               
+VPC: AWS provides us with a platform of making our own private cloud for security and safety reasons. For maintaining data abstraction and securing data
+     we configure a VPC which by default makes a ROute Table, Security Group and an Access Control List (ACL).It goes as follows: 
+     
+     - Create a new VPC by providing name and an IPv4 CIDR Block to VPC created in a region.
+     - Creating subnets in configured VPC in different Availability Zones having IPv4 CIDR out of the VPC CIDR range ( Preferably 2 subnets per AZ ) 
+     - Allow 1 Subnet in each AZ to modify auto-assign IP settings in actions of subnet to enable auto-assign public IPv4 address which will act as our public subnet.
+     - 
+     
+               
+
