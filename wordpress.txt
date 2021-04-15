@@ -7,11 +7,13 @@ Introduction : Wordpress is considered to be the most popular CMS (content manag
                
                
 VPC: AWS provides us with a platform of making our own private cloud for security and safety reasons. For maintaining data abstraction and securing data
-     we configure a VPC which by default makes a ROute Table, Security Group and an Access Control List (ACL).It goes as follows: 
+     we configure a VPC which by default makes a ROute Table, Security Group and an Access Control List (ACL).Navigate to the VPC dashbaord and proceed as follows: 
      
      - Create a new VPC by providing name and an IPv4 CIDR Block to VPC created in a region.
      - Creating subnets in configured VPC in different Availability Zones having IPv4 CIDR out of the VPC CIDR range ( Preferably 2 subnets per AZ ) 
+     - Create and Internet Gateway and attach it to the configured VPC.
      - Allow 1 Subnet in each AZ to modify auto-assign IP settings in actions of subnet to enable auto-assign public IPv4 address which will act as our public subnet.
+     - The default Route Table has no subnet association. Create a new route table and associate the public subnet to it and add 0.0.0.0 and ::/0 in destination and igw in target.
      - 
      
                
