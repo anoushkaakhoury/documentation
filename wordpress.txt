@@ -14,7 +14,9 @@ VPC: AWS provides us with a platform of making our own private cloud for securit
      - Create and Internet Gateway and attach it to the configured VPC.
      - Allow 1 Subnet in each AZ to modify auto-assign IP settings in actions of subnet to enable auto-assign public IPv4 address which will act as our public subnet.
      - The default Route Table has no subnet association. Create a new route table and associate the public subnet to it and add 0.0.0.0 and ::/0 in destination and igw in target.
-     - 
+     - This will allow traffic flow into our Public Subnet resources and also provide them connectivity to the internet.
+     The concept of private subnet means that there is no connectivity between them and the outside world. We can allow resources in private subnets to connect to the internet but prevent the internet from initiating a connection with these resources. For the same create a NAT gateway and choose one of the public subnets and allow traffic 0.0.0.0 in the private route table and attach nat gateway in target. 
+     This allows private subnets to connect to the internet but does not assign them a public IP for us to SSH into any EC2 instances in these subnets. For that we will set up a bastion host instance in public subnet and allow traffic from bastion host security group to private instance security group.
      
                
 
