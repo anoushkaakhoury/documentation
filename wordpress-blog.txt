@@ -1,0 +1,21 @@
+Introduction : Wordpress is considered to be the most popular CMS (content management system) on the internet which allows us to set up blogs and websites with 
+               the ease of a few clicks.As it has an engaing UI, modifying it to our convenience is easier thus making it a robust application. 
+                
+               The objective behind this guide will be to set up a Highly Available, Scalable and Failure Resistent Wordpress Application Architecture that involves 
+               Virtual Private Cloud(VPC), Application Load Balancer (ALB) , DNS Name, Auto Scaling Group ( ASG), Relational Database Service (RDS),EC2 instances 
+               and a CI/CD Pipeline.
+               
+
+Architecture :
+
+VPC: AWS provides us with a platform of making our own private cloud for maintaining data abstraction and securing data.
+     We configure a VPC which by default makes a Route Table, Security Group and an Access Control List (ACL). A VPC is region specific and needs to be provided an IPv4 CIDR Block 
+     like 10.0.0.0/16 and allows us to launch subnets in different Avalilability Zones ( AZs - ap-south-1a,ap-south-1b,etc ). We should have atleast one public subnet with 
+     auto assign IPv4 enabled for public resources and and one private subnet for private resources in each AZ. The subnet is given a CIDR Block from the CIDR Range of VPC. 
+     To allow a logical connection between an Amazon VPC and the Internet we create an Internet Gateway which is VPC Specific and allow it in a new route table from all traffic
+     and associate the public subnets to this table keeping the main route table private. The more number of subnets we create in different AZs makes our architecture more 
+     failure resilient and scalable. 
+     But there is a big question that arises from this setup - How do we connect to any instances in Private subnets ? Or how do we provide them internet connectivity ?
+     Resources in a VPC can communicate with each other through security groups but may not be alllowed internet access. We have pandora's box here in the form of NAT Gateway 
+     which gives private resources internet access but prevents the internet from initiating a connection with those resources. NAT Gateway must be mentioned in private Route 
+     Table from destination all traffic.
